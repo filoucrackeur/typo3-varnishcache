@@ -33,10 +33,10 @@ varnishcache
 		2015
 
 	:Author:
-		Mittwald CM Service GmbH & Co. KG
+		Filoucrackeur CM Service GmbH & Co. KG
 
 	:Email:
-		opensource@mittwald.de
+		opensource@filoucrackeur.de
 
 	:License:
 		This document is published under the Open Content License

@@ -2,7 +2,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Service;
+namespace Filoucrackeur\Varnishcache\Service;
 
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -36,13 +36,13 @@ class EsiTagService {
     protected $contentObjectRenderer;
 
     /**
-     * @var \Mittwald\Varnishcache\Service\TyposcriptPluginSettingsService
+     * @var \Filoucrackeur\Varnishcache\Service\TyposcriptPluginSettingsService
      * @inject
      */
     protected $typoscriptPluginSettingsService;
 
     /**
-     * @var \Mittwald\Varnishcache\Service\TsConfigService
+     * @var \Filoucrackeur\Varnishcache\Service\TsConfigService
      * @inject
      */
     protected $tsConfigService;

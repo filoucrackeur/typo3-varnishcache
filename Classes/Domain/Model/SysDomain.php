@@ -2,7 +2,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Domain\Model;
+namespace Filoucrackeur\Varnishcache\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -52,7 +52,7 @@ class SysDomain extends AbstractDomainObject {
     protected $forced;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Mittwald\Varnishcache\Domain\Model\Server>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Filoucrackeur\Varnishcache\Domain\Model\Server>
      */
     protected $servers;
 

@@ -2,7 +2,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -10,18 +10,15 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Hooks;
+namespace Filoucrackeur\Varnishcache\Hooks;
 
-use Mittwald\Varnishcache\Service\EsiTagService;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
+use Filoucrackeur\Varnishcache\Service\EsiTagService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 
 /**
  * Class StdWrap
- * @package Mittwald\Varnishcache\Hooks
+ * @package Filoucrackeur\Varnishcache\Hooks
  */
 class StdWrap extends AbstractHook {
 
@@ -32,7 +29,7 @@ class StdWrap extends AbstractHook {
 
 
     /**
-     * @var \Mittwald\Varnishcache\Service\EsiTagService
+     * @var \Filoucrackeur\Varnishcache\Service\EsiTagService
      */
     protected $esiTagService;
 
@@ -52,7 +49,7 @@ class StdWrap extends AbstractHook {
     public function getEsiTagService() {
         if (is_null($this->esiTagService)) {
             try {
-                $this->esiTagService = $this->objectManager->get('Mittwald\\Varnishcache\\Service\\EsiTagService');
+                $this->esiTagService = $this->objectManager->get(EsiTagService::class);
             } catch (\Exception $e) {
                 echo 'EsiTagService could not be initialised: ' . $e->getCode() . $e->getMessage();
             }

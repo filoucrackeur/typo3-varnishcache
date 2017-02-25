@@ -4,7 +4,7 @@ CREATE TABLE tt_content (
 );
 
 CREATE TABLE tx_varnishcache_domain_model_server (
-  	uid int(11) NOT NULL auto_increment,
+  uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	ip varchar(255) DEFAULT '' NOT NULL,
@@ -26,11 +26,11 @@ CREATE TABLE tx_varnishcache_domain_model_server (
 );
 
 CREATE TABLE sys_domain (
-	servers int(11) DEFAULT '0' NOT NULL,
+	servers int(11) DEFAULT '0' NOT NULL
 );
 
 CREATE TABLE tx_varnishcache_domain_model_server_sysdomain_mm (
-  	uid int(11) NOT NULL auto_increment,
+  uid int(11) NOT NULL auto_increment,
   uid_local int(11) DEFAULT '0' NOT NULL,
   uid_foreign int(11) DEFAULT '0' NOT NULL,
   tablenames varchar(30) DEFAULT '' NOT NULL,
@@ -40,6 +40,6 @@ CREATE TABLE tx_varnishcache_domain_model_server_sysdomain_mm (
 
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign),
-  PRIMARY KEY (uid),
+  PRIMARY KEY (uid)
 );
 

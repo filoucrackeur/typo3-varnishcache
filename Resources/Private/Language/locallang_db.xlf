@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
     <file source-language="en" datatype="plaintext" original="messages" date="2015-10-15T10:19:33Z"
-          product-name="mittwald_varnishcache">
+          product-name="filoucrackeur_varnishcache">
         <header/>
         <body>
             <trans-unit id="tt_content.exclude_from_cache">

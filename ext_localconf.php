@@ -3,7 +3,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -28,17 +28,15 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectArrayInternalContentObject'] = array(
-        'className' => 'Mittwald\\Varnishcache\\Frontend\\ContentObject\\ContentObjectArrayInternalContentObject'
-);
+//$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectArrayInternalContentObject'] = array(
+//    'className' => 'Filoucrackeur\\Varnishcache\\Frontend\\ContentObject\\ContentObjectArrayInternalContentObject'
+//);
 
 
 if (TYPO3_MODE === 'BE') {
     // On save page
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
-            'Mittwald\Varnishcache\Hooks\Cache->clearCachePostProc';
+    //$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] = \Filoucrackeur\Varnishcache\Hooks\DataHandler::class.'->clearCachePostProc';
 
     // On flush cache
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearPageCacheEval'][] =
-            'Mittwald\Varnishcache\Hooks\Cache->clearCachePostProc';
+    //$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearPageCacheEval'][] = \Filoucrackeur\Varnishcache\Hooks\DataHandler::class.'->clearCachePostProc';
 }

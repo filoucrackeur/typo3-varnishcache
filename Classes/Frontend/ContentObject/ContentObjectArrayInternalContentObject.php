@@ -1,63 +1,72 @@
 <?php
-/* * *************************************************************
- *  Copyright notice
- *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+namespace Filoucrackeur\Varnishcache\Frontend\ContentObject;
 
-namespace Mittwald\Varnishcache\Frontend\ContentObject;
-
-use Mittwald\Varnishcache\Service\EsiTagService;
-use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use Filoucrackeur\Varnishcache\Service\EsiTagService;
+use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
-
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * Class ContentObjectArrayInternalContentObject
- * @package Mittwald\Varnishcache\Frontend\ContentObject
+ * Contains COA_INT class object.
  */
-class ContentObjectArrayInternalContentObject extends \TYPO3\CMS\Frontend\ContentObject\ContentObjectArrayInternalContentObject {
-
+class ContentObjectArrayInternalContentObject extends AbstractContentObject
+{
     /**
-     * @var \Mittwald\Varnishcache\Service\EsiTagService
+     * @var \Filoucrackeur\Varnishcache\Service\EsiTagService
      * @inject
      */
     protected $esiTagService;
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     * @inject
+     */
+    protected $objectManager;
 
     /**
-     * @param array $conf
-     * @return string
+     * Rendering the cObject, COA_INT
+     *
+     * @param array $conf Array of TypoScript properties
+     * @return string Output
      */
-    public function render($conf = array()) {
-        $content = parent::render($conf);
+    public function render($conf = [])
+    {
+        parent::render($conf);
+        if (!is_array($conf)) {
+            $this->getTimeTracker()->setTSlogMessage('No elements in this content object array (COA_INT).', 2);
+            return '';
+        }
+        $substKey = 'INT_SCRIPT.' . $this->getTypoScriptFrontendController()->uniqueHash();
+        $content = '<!--' . $substKey . '-->';
+        $this->getTypoScriptFrontendController()->config['INTincScript'][$substKey] = [
+            'conf' => $conf,
+            'cObj' => serialize($this->cObj),
+            'type' => 'COA'
+        ];
 
+/*
         if (!($formVarnish = GeneralUtility::_GET('varnish'))) {
             $content = $this->getEsiTagService()->render($content, $this->getContentObject());
         }
-
+  */
         return $content;
+    }
+
+    /**
+     * @return object
+     */
+    protected function getTimeTracker()
+    {
+        return GeneralUtility::makeInstance(TimeTracker::class);
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     */
+    protected function getTypoScriptFrontendController()
+    {
+        return $GLOBALS['TSFE'];
     }
 
     /**
@@ -65,17 +74,8 @@ class ContentObjectArrayInternalContentObject extends \TYPO3\CMS\Frontend\Conten
      */
     protected function getEsiTagService() {
         if (is_null($this->esiTagService)) {
-            $this->esiTagService = $this->getObjectManager()->get('Mittwald\\Varnishcache\\Service\\EsiTagService');
+            $this->esiTagService = $this->objectManager->get(EsiTagService::class);
         }
         return $this->esiTagService;
     }
-
-    /**
-     * @return ObjectManager
-     */
-    protected function getObjectManager() {
-        return GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-    }
-
-
 }

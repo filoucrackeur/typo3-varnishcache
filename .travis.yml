@@ -15,6 +15,6 @@ deploy:
   file_glob: true
   file: varnishcache_*.zip
   on:
-    repo: mittwald/typo3-varnishcache
+    repo: filoucrackeur/typo3-varnishcache
     tags: true
     php: 5.6

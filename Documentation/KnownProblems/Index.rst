@@ -11,5 +11,5 @@
 Known Problems
 ==============
 
-Use issue tracker on https://github.com/mittwald/typo3-varnishcache/issues
+Use issue tracker on https://github.com/filoucrackeur/typo3-varnishcache/issues
 

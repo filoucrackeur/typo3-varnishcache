@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Hooks;
+namespace Filoucrackeur\Varnishcache\Hooks;
 
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -43,6 +43,6 @@ abstract class AbstractHook {
     public function __construct() {
 
         /* @var $objectManager ObjectManager */
-        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
     }
 }

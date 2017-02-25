@@ -4,10 +4,10 @@ plugin.varnishcache {
 	}
 }
 
-plugin.Mittwald\Varnishcache\Hooks\StdWrap.includeLibs = EXT:varnishcache/Classes/Hooks/StdWrap.php
+plugin.Filoucrackeur\Varnishcache\Hooks\StdWrap.includeLibs = EXT:varnishcache/Classes/Hooks/StdWrap.php
 
 # PostUserFunc to provide esi-tags
-tt_content.stdWrap.postUserFunc = Mittwald\Varnishcache\Hooks\StdWrap->addEsiTags
+tt_content.stdWrap.postUserFunc = Filoucrackeur\Varnishcache\Hooks\StdWrap->addEsiTags
 tt_content.stdWrap.postUserFunc.includeLibs = EXT:varnishcache/Classes/Hooks/StdWrap.php
 
 [globalVar = GP:type = {$plugin.varnishcache.settings.typeNum}]
@@ -26,13 +26,13 @@ varnish {
 	}
 
 	10 = USER
-	10.userFunc = Mittwald\Varnishcache\Renderer\ContentElement->render
+	10.userFunc = Filoucrackeur\Varnishcache\Renderer\ContentElement->render
 	10.includeLibs = EXT:varnishcache/Classes/Renderer/ContentElement.php
 }
 
 # Map entity to sys_domain table
 config.tx_extbase.persistence.classes {
-	Mittwald\Varnishcache\Domain\Model\SysDomain {
+	Filoucrackeur\Varnishcache\Domain\Model\SysDomain {
 		mapping {
 			tableName = sys_domain
 			columns {
@@ -44,3 +44,5 @@ config.tx_extbase.persistence.classes {
 	}
 }
 
+varnish.70 = USER_INT
+varnish.70.userFunc = Filoucrackeur\Varnishcache\Test->test

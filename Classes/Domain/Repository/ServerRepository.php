@@ -2,7 +2,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Domain\Repository;
+namespace Filoucrackeur\Varnishcache\Domain\Repository;
 
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;

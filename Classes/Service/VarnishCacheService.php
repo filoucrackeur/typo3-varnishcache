@@ -2,7 +2,7 @@
 /* * *************************************************************
  *  Copyright notice
  *
- *  (C) 2015 Mittwald CM Service GmbH & Co. KG <opensource@mittwald.de>
+ *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
  *
  *  All rights reserved
  *
@@ -23,11 +23,11 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-namespace Mittwald\Varnishcache\Service;
+namespace Filoucrackeur\Varnishcache\Service;
 
 
-use Mittwald\Varnishcache\Domain\Model\Server;
-use Mittwald\Varnishcache\Domain\Model\SysDomain;
+use Filoucrackeur\Varnishcache\Domain\Model\Server;
+use Filoucrackeur\Varnishcache\Domain\Model\SysDomain;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
@@ -36,13 +36,13 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class VarnishCacheService {
 
     /**
-     * @var \Mittwald\Varnishcache\Service\FrontendUrlGenerator
+     * @var \Filoucrackeur\Varnishcache\Service\FrontendUrlGenerator
      * @inject
      */
     protected $frontendUrlGenerator;
 
     /**
-     * @var \Mittwald\Varnishcache\Domain\Repository\SysDomainRepository
+     * @var \Filoucrackeur\Varnishcache\Domain\Repository\SysDomainRepository
      * @inject
      */
     protected $domainRepository;
