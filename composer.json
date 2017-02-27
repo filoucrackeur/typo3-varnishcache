@@ -3,7 +3,7 @@
   "description": "Varnishcache TYPO3 Extension",
   "homepage": "http://www.webstationservice.fr",
   "license": "GPL-2",
-  "version": "1.0-dev",
+  "version": "1.0.0",
   "require": {
     "typo3/cms-core": "^8.0"
   },

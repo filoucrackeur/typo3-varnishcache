@@ -27,31 +27,67 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-$tempColumns = array(
-        'exclude_from_cache' => array(
-                'exclude' => 1,
-                'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.exclude_from_cache',
-                'config' => array(
-                        'type' => 'check',
-                )
-        ),
-        'alternative_content' => array(
-                'exclude' => 1,
-                'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.alternative_content',
-                'config' => array(
-                        'type' => 'group',
-                        'internal_type' => 'db',
-                        'allowed' => 'tt_content',
-                        'size' => 1,
-                        'wizards' => array(
-                                'suggest' => array(
-                                        'type' => 'suggest'
-                                ),
-                        ),
-                ),
-        ),
+$tempColumns = [
+    'exclude_from_cache' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.exclude_from_cache',
+        'config' => [
+            'type' => 'check',
+        ]
+    ],
+    'ttl' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.ttl',
+        'config' => [
+            'type' => 'input',
+            'size' => 2,
+            'default' => 0,
+            'eval' => 'int',
+            'range' => [
+                'lower' => 0,
+                'upper' => 365
+            ],
+            'wizards' => [
+                'slider' => [
+                    'type' => 'slider',
+                    'step' => 1
+                ]
+            ]
+        ]
+    ],
+    'ttl_unit' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.ttl_unit',
+        'config' => [
+            'type' => 'select',
+            'default' => 's',
+            'items' => [
+                0 => ['secondes','s'],
+                1 => ['minutes','m'],
+                2 => ['hours','h'],
+                3 => ['days','d'],
+                4 => ['weeks','w'],
+                5 => ['years','y'],
+            ]
+        ]
+    ],
+    'alternative_content' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:varnishcache/Resources/Private/Language/locallang_db.xlf:tt_content.alternative_content',
+        'config' => [
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'tt_content',
+            'size' => 1,
+            'wizards' => [
+                'suggest' => [
+                    'type' => 'suggest'
+                ],
+            ],
+        ],
+    ],
 
-);
+];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Caching,exclude_from_cache, alternative_content');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Varnish Cache,exclude_from_cache, ttl,ttl_unit, alternative_content');

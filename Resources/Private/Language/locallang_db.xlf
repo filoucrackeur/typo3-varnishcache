@@ -7,6 +7,12 @@
             <trans-unit id="tt_content.exclude_from_cache">
                 <source>Exclude from cache and use ESI-Tag</source>
             </trans-unit>
+            <trans-unit id="tt_content.ttl">
+                <source>TTL Durations</source>
+            </trans-unit>
+            <trans-unit id="tt_content.ttl_unit">
+                <source>TTL Unit</source>
+            </trans-unit>
             <trans-unit id="tt_content.alternative_content">
                 <source>Show following alternative content</source>
             </trans-unit>

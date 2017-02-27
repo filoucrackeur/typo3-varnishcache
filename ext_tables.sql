@@ -1,5 +1,7 @@
 CREATE TABLE tt_content (
   exclude_from_cache tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	ttl int(4) unsigned DEFAULT '0' NOT NULL,
+	ttl_unit char(1) DEFAULT '' NOT NULL,
   alternative_content int(11) DEFAULT '0' NOT NULL
 );
 

@@ -57,6 +57,8 @@ class EsiTagService {
         $this->contentObjectRenderer = $contentObjectRenderer;
         $typoScriptConfig = $this->typoscriptPluginSettingsService->getConfiguration();
 
+        $ttl = $this->contentObjectRenderer->data['ttl'] > 0 ? $this->contentObjectRenderer->data['ttl'].$this->contentObjectRenderer->data['ttl_unit']: null;
+
         if ($this->isIntObject($content)) {
             $link = $this->contentObjectRenderer->typoLink_URL(array(
                     'parameter' => $GLOBALS['TSFE']->id,
@@ -67,7 +69,7 @@ class EsiTagService {
                             . '&varnish=1',
 
             ));
-            $content = $this->wrapEsiTag($link);
+            $content = $this->wrapEsiTag($link, $ttl);
         } elseif ($this->contentObjectRenderer->data['exclude_from_cache'] && $GLOBALS['TSFE']->type != $typoScriptConfig['typeNum']) {
             $link = $this->contentObjectRenderer->typoLink_URL(array(
                     'parameter' => $GLOBALS['TSFE']->id,
@@ -77,7 +79,7 @@ class EsiTagService {
                             . '&varnish=1',
 
             ));
-            $content = $this->wrapEsiTag($link);
+            $content = $this->wrapEsiTag($link, $ttl);
 
             if (($cUid = $this->contentObjectRenderer->data['alternative_content'])) {
                 $cConf = array(
@@ -104,8 +106,8 @@ class EsiTagService {
      * @param $content
      * @return string
      */
-    protected function wrapEsiTag($content) {
-        return '<!--esi <esi:include src="' . $content . '" />-->';
+    protected function wrapEsiTag($content, $ttl) {
+        return '<!--esi <esi:include src="' . $content . '" ttl="' . $ttl . '" />-->';
     }
 
     /**
