@@ -1,23 +1,13 @@
 <?php
-/* * *************************************************************
- *  Copyright notice
- *
- *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
- *
- *  All rights reserved
- *
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
 namespace Filoucrackeur\Varnishcache\Renderer;
 
-
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-class ContentElement {
+class ContentElement
+{
 
     /**
      * @var ContentObjectRenderer
@@ -27,8 +17,8 @@ class ContentElement {
     /**
      * @return string
      */
-    public function render() {
-
+    public function render()
+    {
         if (($identifier = GeneralUtility::_GET('identifier')) && ($key = GeneralUtility::_GET('key'))) {
             if ($row = $this->getCacheManager()->get($identifier)) {
                 /* @var $INTiS_cObj ContentObjectRenderer */
@@ -42,11 +32,11 @@ class ContentElement {
             return '';
         }
 
-        $configArray = array(
-                'tables' => 'tt_content',
-                'source' => $cUid,
-                'dontCheckPid' => 1,
-        );
+        $configArray = [
+            'tables' => 'tt_content',
+            'source' => $cUid,
+            'dontCheckPid' => 1,
+        ];
 
         return $this->cObj->cObjGetSingle('RECORDS', $configArray);
 
@@ -55,7 +45,8 @@ class ContentElement {
     /**
      * @return VariableFrontend
      */
-    protected function getCacheManager() {
-        return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_pages');
+    protected function getCacheManager()
+    {
+        return GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_pages');
     }
 }

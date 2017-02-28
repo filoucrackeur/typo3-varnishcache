@@ -45,11 +45,11 @@ class ContentObjectArrayInternalContentObject extends AbstractContentObject
             'type' => 'COA'
         ];
 
-/*
+
         if (!($formVarnish = GeneralUtility::_GET('varnish'))) {
-            $content = $this->getEsiTagService()->render($content, $this->getContentObject());
+            $content = $this->getEsiTagService()->render($content, $this->getContentObjectRenderer());
         }
-  */
+
         return $content;
     }
 

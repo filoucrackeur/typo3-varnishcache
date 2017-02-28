@@ -1,26 +1,15 @@
 <?php
-/* * *************************************************************
- *  Copyright notice
- *
- *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
- *
- *  All rights reserved
- *
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
 namespace Filoucrackeur\Varnishcache\Hooks;
 
 use Filoucrackeur\Varnishcache\Service\EsiTagService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-
 /**
  * Class StdWrap
  * @package Filoucrackeur\Varnishcache\Hooks
  */
-class StdWrap extends AbstractHook {
+class StdWrap extends AbstractHook
+{
 
     /**
      * @var ContentObjectRenderer
@@ -29,24 +18,25 @@ class StdWrap extends AbstractHook {
 
 
     /**
-     * @var \Filoucrackeur\Varnishcache\Service\EsiTagService
+     * @var EsiTagService
      */
     protected $esiTagService;
 
 
     /**
      * @param string $content
-     * @param array $params
      * @return string
      */
-    public function addEsiTags($content, $params) {
+    public function addEsiTags(string $content)
+    {
         return $this->getEsiTagService()->render($content, $this->cObj);
     }
 
     /**
      * @return EsiTagService
      */
-    public function getEsiTagService() {
+    public function getEsiTagService()
+    {
         if (is_null($this->esiTagService)) {
             try {
                 $this->esiTagService = $this->objectManager->get(EsiTagService::class);

@@ -1,39 +1,13 @@
 <?php
-/* * *************************************************************
- *  Copyright notice
- *
- *  (C) 2015 Filoucrackeur CM Service GmbH & Co. KG <opensource@filoucrackeur.de>
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
 namespace Filoucrackeur\Varnishcache\Service;
-
 
 use Filoucrackeur\Varnishcache\Domain\Model\Server;
 use Filoucrackeur\Varnishcache\Domain\Model\SysDomain;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-class VarnishCacheService {
+class VarnishCacheService
+{
 
     /**
      * @var \Filoucrackeur\Varnishcache\Service\FrontendUrlGenerator
@@ -50,11 +24,11 @@ class VarnishCacheService {
     /**
      * Flush cache for every found domain and given varnish server
      *
-     * @param $currentPageId
+     * @param int $currentPageId
      * @return bool
      */
-    public function flushCache($currentPageId) {
-
+    public function flushCache(int $currentPageId)
+    {
         $url = $this->frontendUrlGenerator->getFrontendUrl($currentPageId);
 
         if ($currentPageId > 0) {
@@ -71,8 +45,6 @@ class VarnishCacheService {
                     foreach ($servers as $server) {
                         $this->request($domain, $server, $url);
                     }
-
-
                 }
             }
             return TRUE;
@@ -88,7 +60,8 @@ class VarnishCacheService {
      * @param $frontendUrl
      * @return mixed
      */
-    protected function request(SysDomain $domain, Server $server, $frontendUrl) {
+    protected function request(SysDomain $domain, Server $server, $frontendUrl)
+    {
 
         if (!function_exists('curl_version')) {
             throw new \BadFunctionCallException('Curl is required but not loaded', '1444895510');
@@ -109,8 +82,8 @@ class VarnishCacheService {
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $server->getMethod());
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-                'X-Host: ' . $domain->getDomainName(),
-                'X-Url: ' . $frontendUrl,
+            'X-Host: ' . $domain->getDomainName(),
+            'X-Url: ' . $frontendUrl,
         ));
         curl_setopt($curl, CURLINFO_HEADER_OUT, 1);
         $header = curl_exec($curl);
@@ -126,7 +99,8 @@ class VarnishCacheService {
     /**
      * @return BackendUserAuthentication
      */
-    protected function getBackendUser() {
+    protected function getBackendUser()
+    {
         return $GLOBALS['BE_USER'];
     }
 }

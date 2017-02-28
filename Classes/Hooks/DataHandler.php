@@ -16,7 +16,6 @@ class DataHandler {
      */
     public function clearCacheCommand($params) {
 
-/*
         if (isset($params['cacheCmd']) && 'pages' === $params['cacheCmd']) {
             $this->getVarnishCacheService()->flushCache(0);
         }
@@ -28,10 +27,6 @@ class DataHandler {
                 $this->getVarnishCacheService()->flushCache($pageId);
             }
         }
-*/
+
     }
-
-
-
-
 }
