@@ -40,13 +40,18 @@ class EsiTagService
                 [
                     'parameter'        => $GLOBALS['TSFE']->id,
                     'forceAbsoluteUrl' => 1,
+                    'forceAbsoluteUrl.' => [
+                        'scheme' => 'http'
+                    ],
                     'additionalParams' => '&element=' . $this->contentObjectRenderer->data['uid']
                         . '&type=' . $typoScriptConfig['typeNum']
-                        . '&varnish=1',
+                        . '&varnish=1'
+                        . '&ttl='.$ttl,
 
                 ]
             );
-            $content = $this->wrapEsiTag($link, $ttl);
+
+            $content = $this->wrapEsiTag($link);
 
             if (($cUid = $this->contentObjectRenderer->data['alternative_content'])) {
                 $cConf = [
@@ -83,9 +88,15 @@ class EsiTagService
      * @param $content
      * @return string
      */
-    protected function wrapEsiTag($content, $ttl)
+    protected function wrapEsiTag($content)
     {
-        return '<!--esi <esi:include src="' . $content . '" ttl="' . $ttl . '" />-->';
+        $esi = <<<HTML
+<!--esi 
+<esi:include src="$content" />
+-->
+HTML;
+
+        return $esi;
     }
 
 }
