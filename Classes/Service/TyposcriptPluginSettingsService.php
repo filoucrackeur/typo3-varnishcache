@@ -15,7 +15,7 @@ class TyposcriptPluginSettingsService
     /**
      * @var array
      */
-    protected $configuration = array();
+    protected $configuration = [];
 
 
     /**

@@ -32,7 +32,6 @@ class ContentObjectArrayInternalContentObject extends AbstractContentObject
      */
     public function render($conf = [])
     {
-        parent::render($conf);
         if (!is_array($conf)) {
             $this->getTimeTracker()->setTSlogMessage('No elements in this content object array (COA_INT).', 2);
             return '';
@@ -45,9 +44,8 @@ class ContentObjectArrayInternalContentObject extends AbstractContentObject
             'type' => 'COA'
         ];
 
-
         if (!($formVarnish = GeneralUtility::_GET('varnish'))) {
-            $content = $this->getEsiTagService()->render($content, $this->getContentObjectRenderer());
+            $content = $this->getEsiTagService()->render($content, $this->getContentObject());
         }
 
         return $content;

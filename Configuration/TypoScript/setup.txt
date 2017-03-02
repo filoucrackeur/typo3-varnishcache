@@ -43,6 +43,3 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 }
-
-varnish.70 = USER_INT
-varnish.70.userFunc = Filoucrackeur\Varnishcache\Test->test
